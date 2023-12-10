@@ -41,7 +41,7 @@ type APIShow = {
 };
 export const TVShowDetails = () => {
   const { id } = useParams();
-  console.log(id);
+
   const [show, setShow] = useState<Show>();
   useEffect(() => {
     if (id) {
@@ -70,7 +70,6 @@ export const TVShowDetails = () => {
         });
     }
   }, [id]);
-  console.log(show);
   const stars = Array.from(
     { length: 5 },
     (_, index) =>
@@ -104,13 +103,8 @@ export const TVShowDetails = () => {
             ></h3>
           </div>
 
-          {/* Right side: Title, Rating, and Info */}
           <div className="md:col-span-2">
-            {/* Title and Rating */}
-
-            {/* Show Info and Cast */}
             <div className="md:grid md:grid-cols-2 gap-4">
-              {/* Show Info */}
               <div>
                 <h2 className="text-lg font-semibold mt-4 mb-2">Show Info</h2>
                 <div className="grid grid-cols-2 md:grid-cols-1">
@@ -120,8 +114,6 @@ export const TVShowDetails = () => {
                   <p className="py-7">Genres: {show.genres}</p>
                 </div>
               </div>
-
-              {/* Starring */}
               <div>
                 <h2 className="text-lg font-semibold mt-4 mb-2">Starring </h2>
                 {show.actors.slice(0, 4).map((actor, index) => (

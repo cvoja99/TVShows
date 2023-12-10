@@ -20,7 +20,11 @@ export const Homepage = () => {
     navigate(`movies/${id}`);
   };
   const [shows, setShows] = useState<APIShow[]>([]);
-
+  const [selectedShows, setSelectedShows] = useState<APIShow[]>([]);
+  const [offset, setOffset] = useState<number>(0);
+  useEffect(() => {
+    setSelectedShows(shows.slice(0, offset + 18));
+  }, [offset, shows]);
   useEffect(() => {
     fetch("https://api.tvmaze.com/shows")
       .then((response) => response.json())
@@ -31,7 +35,6 @@ export const Homepage = () => {
         console.error("Error fetching data: ", error);
       });
   }, []);
-  console.log(shows);
 
   return (
     <div>
@@ -50,7 +53,7 @@ export const Homepage = () => {
         </div>
         <div className="md:px-16">
           <div className="grid grid-cols-2 md:grid-cols-6 sm:gap-4 md:gap-12 ">
-            {shows.map((item) => {
+            {selectedShows.map((item) => {
               const { id, name, image } = item;
               const rating = item.rating.average;
               return (
@@ -64,6 +67,16 @@ export const Homepage = () => {
               );
             })}
           </div>
+          {offset + 17 <= shows.length && (
+            <div className="justify-center flex ">
+              <button
+                className="text-lg border-2xl rounded-sm border-solid "
+                onClick={() => setOffset(offset + 18)}
+              >
+                Load More
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
