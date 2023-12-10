@@ -11,7 +11,7 @@ type Schedules = {
   };
 };
 
-type APIShow = {
+export type APIShow = {
   id: number;
   name: string;
   rating: {
@@ -21,98 +21,6 @@ type APIShow = {
     medium: string;
   };
 };
-export const shows = [
-  {
-    id: 1,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 3,
-  },
-  {
-    id: 2,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 5,
-  },
-  {
-    id: 3,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 4,
-  },
-  {
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 3,
-  },
-  {
-    id: 4,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 5,
-  },
-  {
-    id: 5,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 4,
-  },
-  {
-    id: 6,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 3,
-  },
-  {
-    id: 7,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 5,
-  },
-
-  {
-    id: 8,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 3,
-  },
-  {
-    id: 9,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 5,
-  },
-  {
-    id: 10,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 4,
-  },
-  {
-    id: 11,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 3,
-  },
-  {
-    id: 12,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 5,
-  },
-  {
-    id: 13,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 4,
-  },
-  {
-    id: 14,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 3,
-  },
-  {
-    id: 15,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 5,
-  },
-  {
-    id: 16,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 4,
-  },
-  {
-    id: 17,
-    title: "This is a title of the TV Show which is very long isn't it",
-    rating: 4,
-  },
-];
 
 export const Homepage = () => {
   const navigate = useNavigate();

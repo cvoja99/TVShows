@@ -10,10 +10,12 @@ const App = () => {
     <BrowserRouter>
       <div className="bg-gray-100 w-full h-full">
         <Header />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/movies/:id" element={<TVShowDetails />} />
-        </Routes>
+        <div className="pb-32 bg-gray-100">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/movies/:id" element={<TVShowDetails />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </BrowserRouter>
