@@ -88,8 +88,8 @@ export const TVShowDetails = () => {
   return (
     show && (
       <div className="container mx-auto p-4">
-        <div className="flex flex-col md:grid md:grid-cols-3 gap-4">
-          <img src={show.image} />
+        <div className="grid-cols-1 grid md:grid-cols-3 gap-4">
+          <img className="w-full md:w-64" src={show.image} />
           <div>
             <div className="flex items-center py-6">
               <div>{stars}</div>
@@ -113,10 +113,12 @@ export const TVShowDetails = () => {
               {/* Show Info */}
               <div>
                 <h2 className="text-lg font-semibold mt-4 mb-2">Show Info</h2>
-                <p className="py-7">Streamed on: {show.streamedOn}</p>
-                <p className="py-7">Schedule: {show.schedule}</p>
-                <p className="py-7">Status: {show.status}</p>
-                <p className="py-7">Genres: {show.genres}</p>
+                <div className="grid grid-cols-2 md:grid-cols-1">
+                  <p className="py-7">Streamed on: {show.streamedOn}</p>
+                  <p className="py-7">Schedule: {show.schedule}</p>
+                  <p className="py-7">Status: {show.status}</p>
+                  <p className="py-7">Genres: {show.genres}</p>
+                </div>
               </div>
 
               {/* Starring */}

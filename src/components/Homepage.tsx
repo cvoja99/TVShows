@@ -2,15 +2,6 @@ import React, { useEffect, useState } from "react";
 import TVShowCard from "./TVShowCard";
 import { useNavigate } from "react-router-dom";
 
-type Schedules = {
-  id: number;
-  name: string;
-  rating: number;
-  image: {
-    medium: string;
-  };
-};
-
 export type APIShow = {
   id: number;
   name: string;
@@ -28,19 +19,20 @@ export const Homepage = () => {
   const handleShowClick = (id: number) => {
     navigate(`movies/${id}`);
   };
-  const [schedules, setSchedules] = useState<APIShow[]>([]);
+  const [shows, setShows] = useState<APIShow[]>([]);
 
   useEffect(() => {
     fetch("https://api.tvmaze.com/shows")
       .then((response) => response.json())
       .then((data) => {
-        setSchedules(data);
+        setShows(data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
   }, []);
-  console.log(schedules);
+  console.log(shows);
+
   return (
     <div>
       <div>
@@ -56,9 +48,9 @@ export const Homepage = () => {
         <div className="px-16 font-light text-xm tracking-wider">
           Last added shows
         </div>
-        <div className="px-16">
-          <div className="flex grid grid-cols-6 gap-12 ">
-            {schedules.map((item) => {
+        <div className="md:px-16">
+          <div className="grid grid-cols-2 md:grid-cols-6 sm:gap-4 md:gap-12 ">
+            {shows.map((item) => {
               const { id, name, image } = item;
               const rating = item.rating.average;
               return (

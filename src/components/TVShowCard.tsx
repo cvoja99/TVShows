@@ -1,5 +1,4 @@
 import React from "react";
-import reactSVG from "../assets/react.svg";
 interface TVShowCardProps {
   title: string;
   rating: number;
@@ -25,11 +24,11 @@ const TVShowCard: React.FC<TVShowCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className="bg-white p-4 rounded-lg shadow-lg text-center  my-10"
+      className="bg-white sm:p-2 md:p-4 rounded-lg shadow-lg text-center  my-10 cursor-pointer"
     >
       <div className="mb-2">
         <div className="justify-center flex">
-          <img src={image} className="w-32 h-48" />
+          <img src={image} className="md:w-32 sm:w-16 h-48" />
         </div>
         <div>{stars}</div>
       </div>
