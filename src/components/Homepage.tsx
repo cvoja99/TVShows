@@ -1,81 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TVShowCard from "./TVShowCard";
+import { useNavigate } from "react-router-dom";
+
+type Schedules = {
+  id: number;
+  name: string;
+  rating: number;
+  image: {
+    medium: string;
+  };
+};
+
+export type APIShow = {
+  id: number;
+  name: string;
+  rating: {
+    average: number;
+  };
+  image: {
+    medium: string;
+  };
+};
+
 export const Homepage = () => {
-  const shows = [
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 3,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 5,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 4,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 3,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 5,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 4,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 3,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 5,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 4,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 3,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 5,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 4,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 3,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 5,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 4,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 3,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 5,
-    },
-    {
-      title: "This is a title of the TV Show which is very long isn't it",
-      rating: 4,
-    },
-    // Add more shows as needed
-  ];
+  const navigate = useNavigate();
+
+  const handleShowClick = (id: number) => {
+    navigate(`movies/${id}`);
+  };
+  const [schedules, setSchedules] = useState<APIShow[]>([]);
+
+  useEffect(() => {
+    fetch("https://api.tvmaze.com/shows")
+      .then((response) => response.json())
+      .then((data) => {
+        setSchedules(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []);
+  console.log(schedules);
   return (
     <div>
       <div>
@@ -93,9 +58,19 @@ export const Homepage = () => {
         </div>
         <div className="px-16">
           <div className="flex grid grid-cols-6 gap-12 ">
-            {shows.map((show, index) => (
-              <TVShowCard key={index} title={show.title} rating={show.rating} />
-            ))}
+            {schedules.map((item) => {
+              const { id, name, image } = item;
+              const rating = item.rating.average;
+              return (
+                <TVShowCard
+                  key={id}
+                  image={image.medium}
+                  title={name}
+                  rating={rating}
+                  onClick={() => handleShowClick(id)}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
